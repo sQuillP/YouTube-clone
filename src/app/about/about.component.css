@@ -1,0 +1,156 @@
+.main{
+    width: 100%;
+}
+
+.about-section {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-areas: "header header" "main logo";
+    border-bottom: 3px solid var(--border-main);
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+}
+
+.header{
+    font-size: 3em;
+    font-weight: normal;
+}
+
+.header-container{
+    grid-area: header;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #c00;
+    color: white;
+}
+
+.description-container{
+    grid-area: main;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.logo-container{
+    grid-area: logo;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+
+
+.text, .descriptor{
+    margin: 0px; padding: 0px;;
+}
+
+.text{
+    box-sizing: border-box;
+    line-height: 1.3em;
+    
+}
+
+.text-item{
+    padding: 10px 0px 10px 10px;
+
+}
+
+.desc{
+    font-size: 1.2em;
+}
+
+.descriptor{ font-weight: 400; font-size: 1.4em;}
+
+
+
+.image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;;
+}
+
+.img-wrapper{
+    width: 400px;
+    height: 400px;;
+}
+
+.built-with{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.built-with-intro{
+    grid-area: header;
+    border: 1px solid black;
+    text-align: center;
+    padding-top: 60px
+}
+
+hr{
+    height: 1px;
+    border: none;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(transparent), to(transparent), color-stop(50%, var(--border-main)));
+    width: 60%;
+}
+
+
+
+/* card css */
+.card{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin: 40px;
+    width: 600px;
+    overflow: hidden;
+}
+
+
+.card-title {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #c00;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.card-img-wrapper{
+    height: 250px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.card-description {
+    padding: 20px;
+    box-sizing: border-box;
+    border-top: 1px solid var(--border-main);
+    text-align: center;
+}
+
+.card-img{
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%
+    ;
+}
+
+@media screen and (max-width:1030px){
+    .about-section{
+        grid-template-areas: "header" "logo" "main";
+        grid-template-columns: 1fr;
+    }
+    /* .header-container{width: 100%;} */
+}
+
+@media screen and (max-width:460px){
+
+    .card{
+        width: 100%;
+        margin: 0px;
+    }
+}

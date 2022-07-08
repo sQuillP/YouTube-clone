@@ -1,0 +1,32 @@
+<div class="main">
+    <div class="video-container">
+        <div 
+        *ngFor="let video of (videoList$ | async)" 
+        (click)="onViewVideo(video)"
+        class="video-item">
+            <div class="img-col">
+                <img class="image" src={{video.snippet.thumbnails.high.url}} alt="">
+            </div>
+            <div class="content-col">
+                <div class="content-row"> 
+                    <!-- 70 characters -->
+                    <p class="title" [innerHTML]="video.snippet.channelTitle"></p>
+                </div>
+                <div class="content-row">
+                    <p class="small">{{video.statistics.viewCount | formatViews}} views - {{video.snippet.publishedAt | formatTime}}</p>
+                </div>
+                <div class="content-row">
+                    <!-- <div class="channel-img-wrapper">
+                        <img 
+                        src="https://yt3.ggpht.com/ytc/AKedOLTjxUBcfq1-ZDaRoReAdwIGTzKjsULi1oLK8XbUmQ=s900-c-k-c0x00ffffff-no-rj" class="image" alt="">
+                    </div> -->
+                    <p class="channel">{{video.snippet.channelTitle}}</p>
+                </div>
+                <div class="content-row">
+                    <!-- 157 characters -->
+                    <p class="small">{{video.snippet.description | formatTitle:120}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

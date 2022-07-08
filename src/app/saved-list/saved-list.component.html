@@ -1,0 +1,43 @@
+
+<div class="main">
+
+    <div *ngIf="noData" class="no-data">
+        <div class="no-data-wrapper">
+            <div class="error-row"><p class="text"><i class="no-data-icon fa-solid fa-circle-exclamation"></i></p></div>
+            <div class="error-row"><p class="text">You have no saved videos</p></div>
+            <div class="error-row"> <p class="text">Start viewing and saving videos to grow your favorites and history</p> </div>
+        </div>
+    </div>
+
+    <div *ngIf="!noData" class="videos-intro">
+        <p class="text" style="font-size: 1.5em">{{videoType==='saved'?"Favorite Videos":"Watch History"}}</p>
+    </div>
+    <div *ngIf="!noData" class="video-container">
+        <div *ngFor="let video of (videoList$ | async)"
+        class="video-item"
+        (click)='onViewVideo(video)'
+        >
+            <div class="img-col">
+                <img class="image" src={{video.snippet.thumbnails.high.url}} alt="">
+            </div>
+            <div class="content-col">
+                <div class="content-row"> 
+                    <p class="title" [innerHTML]="video.snippet.channelTitle"></p>
+                </div>
+                <div class="content-row">
+                    <p class="small">{{video.statistics.viewCount | formatViews}} views - {{video.snippet.publishedAt | formatTime}}</p>
+                </div>
+                <div class="content-row">
+                    <!-- <div class="channel-img-wrapper">
+                        <img 
+                        src="https://yt3.ggpht.com/ytc/AKedOLTjxUBcfq1-ZDaRoReAdwIGTzKjsULi1oLK8XbUmQ=s900-c-k-c0x00ffffff-no-rj" class="image" alt="">
+                    </div> -->
+                    <p class="channel">{{video.snippet.channelTitle}}</p>
+                </div>
+                <div class="content-row">
+                    <p class="small">{{video.snippet.description | formatTitle:200}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+.content{
+    width: 50px;
+    background: gray;
+    position: relative;
+    border-radius: 20px;;
+    transition: background 200ms linear;
+}
+
+
+.toggled{
+    background: rgb(41, 223, 41);
+}
+
+.slider{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;;
+    background: white;
+    transition: transform 100ms linear;
+    transform: translateX(3px);
+    border: 1px solid #b9c0b9;
+}
+
+.on{
+    transform: translateX(27px);
+}
+

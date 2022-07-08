@@ -1,0 +1,97 @@
+<div class="main">
+    <div class="large-menu">
+        <div class="logo-header" (click)="onNavigate(['home'])">
+            <div class="logo-wrapper">
+                <img class="logo" src="https://www.edigitalagency.com.au/wp-content/uploads/Youtube-logo-png.png" alt="">
+            </div>
+            <h2 class="logo-descriptor">API</h2>
+        </div>
+        <div class="col links">
+            <div class="link"><a routerLinkActive="selected" routerLink="/about" class="nav-link">About</a></div>
+            <div *ngIf="isLoggedIn" class="link"><a routerLinkActive="selected" [routerLink]="['savedList','saved']" class="nav-link">Saved</a></div>
+            <div *ngIf="isLoggedIn" class="link"><a routerLinkActive="selected" [routerLink]="['savedList','history']" class="nav-link">History</a></div>
+        </div>
+        <div class="col search-wrapper">
+            <input 
+            type="text" 
+            class="searchInput" 
+            placeholder="Search"
+            autocomplete="off"
+            [(ngModel)]="term"
+            (keypress)="onSearchTerm($event)"
+            [disabled]="conservationMode"
+            >
+            <button 
+            class="search-btn"
+            (click)="onHandleButtonClick()"
+            ><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="col group">
+            <button *ngIf="!isLoggedIn" (click)="onNavigate(['login','login'])" class="btn login">Login</button>
+            <button *ngIf="!isLoggedIn" (click)="onNavigate(['login','signup'])" class="btn signup">Sign Up</button>
+            <button *ngIf="isLoggedIn" (click)="onLogout()" class="btn">Log Out</button>
+            <div *ngIf="isLoggedIn" class="conserve-mode">
+                <p class="text">Conserve API</p>
+                <app-conservation></app-conservation>
+            </div>
+            <!-- <button class="btn logout">Logout</button> -->
+        </div>
+    </div>
+    <div class="collapsed-menu">
+        <div class="collapsed-main">
+            <div class="collapsed-item collapsed-toggler">
+                <button
+                 #toggleMenuBtn
+                 (click)="toggleCollapsedMenu=!toggleCollapsedMenu"
+                 class="toggle-menu-btn"><i class="yt-icon fa-brands fa-youtube"></i></button>
+            </div>
+            <div class="collapsed-item sm-search-wrapper">
+                <input 
+                type="text" 
+                class="searchInput"
+                [(ngModel)]="term"
+                (keypress)="onSearchTerm($event)"
+                placeholder="Search"
+                [disabled]="conservationMode"
+                >
+                <button 
+                class="search-btn"
+                (click)="onHandleButtonClick()"
+                ><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="collapsed-item">
+                <div *ngIf="isLoggedIn" class="conserve-mode">
+                    <p class="text">Conserve API</p>
+                    <app-conservation></app-conservation>
+                </div>
+            </div>
+        </div>
+        <div 
+        #collapsedMenu
+        class="collapsed-links"
+        [ngClass]="{'collapsed':!toggleCollapsedMenu , 'height':isLoggedIn?'126px':'170px'}"
+        >
+            <div (click)="onNavigate(['about'])" class="collapsed-link">
+                <p class="text">About</p>
+            </div>
+            <div *ngIf="isLoggedIn" (click)="onNavigate(['savedList','saved'])" class="collapsed-link">
+                <p class="text">Favorited Videos</p>
+            </div>
+            <div *ngIf="isLoggedIn" (click)="onNavigate(['savedList','history'])" class="collapsed-link">
+                <p class="text">History</p>
+            </div>
+            <div (click)="onLogout()" *ngIf="isLoggedIn" class="collapsed-link">
+                <p class="text">Logout</p>
+            </div>
+            <div (click)="onNavigate(['login','login'])" *ngIf="!isLoggedIn" class="collapsed-link">
+                <p class="text">Login</p>
+            </div>
+            <div (click)="onNavigate(['login','signup'])" *ngIf="!isLoggedIn" class="collapsed-link">
+                <p class="text">Signup</p>
+            </div>
+            <div (click)="onNavigate(['home'])" class="collapsed-link">
+                <p class="text">Home</p>
+            </div>
+        </div>
+    </div>
+</div>

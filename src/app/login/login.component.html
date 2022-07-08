@@ -1,0 +1,46 @@
+<div class="main">
+
+
+    <div [ngClass]="{'shake-form':triggerShake}" class="login-form">
+        <div class="row">
+            <div class="img-wrapper">
+                <img class="logo" src="https://www.logo.wine/a/logo/YouTube/YouTube-Icon-Full-Color-Logo.wine.svg" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="title">YouTube-API Login</h2>
+        </div>
+        <div *ngIf="invalidForm" class="row error-row">
+            <p class="message error">~Invalid email or password~</p>
+        </div>
+        <div class="row">
+            <form [formGroup]="loginForm">
+                <div class="form-group">
+                    <label for="email">Email <span class="asterisk">*</span></label>
+                    <i class="icon fa-solid fa-envelope"></i>
+                    <input autocomplete="off" formControlName="email" id="email" placeholder="bob@gmail.com" type="email" class="login-input">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password <span class="asterisk">*</span></label>
+                    <i class="icon fa-solid fa-lock"></i>
+                    <input autocomplete="off" formControlName="password" type="password" class="login-input">
+                </div>
+            </form>
+        </div>
+        <div class="row" style="margin-bottom: 20px">
+            <button [disabled]="!loginForm.valid" [ngClass]="{'disabled-btn': !loginForm.valid}" *ngIf="mode === 'login'" (click)="onSubmit('login')" class="btn login">Login</button>
+            <button [disabled]="!loginForm.valid" [ngClass]="{'disabled-btn': !loginForm.valid}" *ngIf="mode === 'signup'" (click)="onSubmit('signup')" class="btn login">Signup</button>
+        </div>
+        <div class="row">
+            <div *ngIf="mode==='login'" class="help-msg">
+                <p class="message">New to this platform?</p>
+                <p (click)="mode='signup'" class="message link">Click here to signup</p>
+            </div>
+            <div *ngIf="mode==='signup'" class="help-msg">
+                <p class="message">Already have an account?</p>
+                <p (click)="mode='login'" class="message link">Click here to login</p>
+            </div>
+        </div>
+    </div>
+
+</div>

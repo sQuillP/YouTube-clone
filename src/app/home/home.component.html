@@ -1,0 +1,34 @@
+<div class="main">
+    <div class="videos-container">
+        <div 
+        class="video" 
+        *ngFor="let video of (videos$ | async)"
+        (click)="onSelectVideo(video)"
+        >
+            <div class="thumbnail">
+                <img class="image" src={{video.snippet.thumbnails.high.url}} alt="">
+            </div>
+            <div class="descriptor">
+                <!-- <div class="channel-img">
+                    <img class="image" src="https://yt3.ggpht.com/ytc/AKedOLTjxUBcfq1-ZDaRoReAdwIGTzKjsULi1oLK8XbUmQ=s900-c-k-c0x00ffffff-no-rj" alt="">
+                </div> -->
+                <div class="info">
+                    <div class="text-section header">
+                        <!-- < 50 chars -->
+                        <p class="title">{{(video.snippet.title | formatTitle)}}</p>
+                    </div>
+                    <div class="text-section">
+                        <!-- channel -->
+                        <p class="small">{{(video.snippet.channelTitle)}}</p>
+                    </div>
+                    <div class="text-section">
+                        <!-- number of views -->
+                        <!-- 26k views • 5 hours ago -->
+                        <p class="small">{{(video.statistics.viewCount | formatViews)}} views • {{(video.snippet.publishedAt | formatDate)}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

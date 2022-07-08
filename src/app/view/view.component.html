@@ -1,0 +1,112 @@
+<div class="main">
+
+    <div class="content-wrapper">
+        <div class="col left">
+            <div class="video-wrapper">
+                <iframe
+                [src]="videoURL | safeURL"
+                style="height: 100%; width: 100%"
+                scrolling="no"
+                ></iframe>
+            </div>
+            <div *ngIf="(video$|async) as video" class="video-details">
+                <div class="video-header-details">
+                    <div *ngIf="video.snippet.tags" class="text-row">
+                        <p class="text tags">{{video.snippet.tags | formatTags}}</p>
+                    </div>
+                    <div class="text-row">
+                        <p class="text video-title">{{video.snippet.title}}</p>
+                    </div>
+                    <div class="text-row viewCount">
+                        <p class="text views faded">{{video.statistics.viewCount | formatViewNum}} views {{video.snippet.publishedAt | formatDate}}</p>
+                    </div>
+                </div>
+                <div class="description-details">
+                    <div class="description-header">
+                        <div class="channel-wrapper">
+                            <div class="channel-img-wrapper">
+                                <img class="thumbnail" src={{video.channelDetails.thumbnails.medium.url}} onerror="if (this.src != 'error.jpg') this.src = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'" alt="">
+                            </div>
+                            <div class="channel-details">
+                                <div class="text-row">
+                                    <p class="text">{{video.snippet.channelTitle}}</p>
+                                </div>
+                                <div class="text-row">
+                                    <p class="text small">{{video.channelDetails.subscriberCount | formatViews}} subscribers</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-wrapper">
+                            <!-- please add more styling to the already-favorited class!!! -->
+                            <button
+                             [ngClass]="{'disabled-btn':(!isLoggedIn||alreadyFavorited), 'already-favorited':alreadyFavorited}" 
+                             [disabled]="(!isLoggedIn||alreadyFavorited)" class="favorite-btn"
+                             (click)="onAddFavorite(video)"
+                             >FAVORITE <i class="favorite-icon fa-solid fa-bookmark"></i></button>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <!-- change the formattitle pipe to another name like limitString() and specify a length to limit the string. -->
+                        <p class="text desc" [innerHTML]="video.snippet.description.substring(0,descriptionLength)"></p>
+                        <p (click)="onRevealDescription()" class="reveal">Show More</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comments">
+                <div class="section-intro">
+                    <p class="text">COMMENTS</p>
+                </div>
+                <div *ngFor="let comment of (commentList$|async)" class="comment">
+                    <div class="img-col">
+                        <div class="img-wrapper">
+                            <img class="thumbnail" src={{comment.snippet.topLevelComment.snippet.authorProfileImageUrl}} alt="" onerror="if (this.src != 'error.jpg') this.src = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'">
+                        </div>
+                    </div>
+                    <div class="text-col">
+                        <div class="text-row">
+                            <p class="text user">{{comment.snippet.topLevelComment.snippet.authorDisplayName}}</p>
+                            <!-- formatDate pipe! -->
+                            <p class="text small">{{comment.snippet.topLevelComment.snippet.publishedAt | formatTime}}</p>
+                        </div>
+                        <div class="text-row">
+                            <p class="text comment" [innerHTML]="comment.snippet.topLevelComment.snippet.textDisplay"></p>
+                        </div>
+                        <div class="text-row icons">
+                            <i class="faded fa-solid fa-thumbs-up"></i>
+                            <p class="text small">{{comment.snippet.topLevelComment.snippet.likeCount+"" | formatViews}}</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- length of 60 characters for video title -->
+        <div class="col track">
+
+            <div class="section-intro">
+                <p class="text">Recommended videos</p>
+            </div>
+            
+            <div 
+            *ngFor="let video of (recommendedList$ | async)" 
+            class="video-item"
+            (click)="onViewVideo(video.id)"
+            >
+                <div class="video-thumbnail-wrapper">
+                    <img class="thumbnail" src={{video.snippet.thumbnails.medium.url}} alt="">
+                </div>
+                <div class="video-details">
+                    <div class="text-row">
+                        <p class="text" [innerHTML]="(video.snippet.title | formatTitle)"></p>
+                    </div>
+                    <div class="text-row">
+                        <p class="text small">{{video.channelTitle}}</p>
+                    </div>
+                    <div class="text-row">
+                        <p class="text small">11m views - 2 years ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
