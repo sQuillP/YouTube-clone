@@ -18,10 +18,11 @@ body{
 }
 
 ::-webkit-scrollbar{
-    width: 8px;
+    width: 5px;
+    background: inherit;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 10px;
+    border-radius: 5px;
 }

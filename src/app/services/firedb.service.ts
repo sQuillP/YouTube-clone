@@ -6,8 +6,6 @@ import { AuthService } from "./auth.service";
 
 /*
 * Promises are used instead of async/await. 
-* This was to better understand how promises worked in an application. 
-* No need to judge perfectly fine and working code :-)
 */
 
 @Injectable({providedIn:'root'})
@@ -130,6 +128,7 @@ export class FireDatabaseService {
 
         let fbId = history[history.length-1].fbId;
         delete history[history.length-1].fbId;
+
         return this.afd.database.ref(dbURL+fbId).remove().then(()=>{
             console.log('clipping watch history (limited to 50 items)');
             return true;
@@ -145,14 +144,14 @@ export class FireDatabaseService {
                 let fbId = recentlyWatchedVideo.fbId;
                 delete recentlyWatchedVideo.fbId;
                 return this.afd.database
-                .ref(dbURL+fbId)
-                .remove()
-                .then(()=> {
-                    return this.afd.database.ref(dbURL).push().set(recentlyWatchedVideo, error=> {
-                        if(error) console.error('unable to re-add video to recently watched');
-                    })
-                    .then(()=> true);
-                })
+                        .ref(dbURL+fbId)
+                        .remove()
+                        .then(()=> {
+                            return this.afd.database.ref(dbURL).push().set(recentlyWatchedVideo, error=> {
+                                if(error) console.error('unable to re-add video to recently watched');
+                            })
+                            .then(()=> true);
+                        })
             }
         }
         return new Promise<boolean>((resolve,reject)=>{ resolve(false)})

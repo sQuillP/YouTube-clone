@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { catchError, map, Observable, throwError, mergeMap, Subject} from "rxjs";
+import { catchError, map, Observable, throwError, mergeMap, Subject, filter, tap} from "rxjs";
 import { API_KEY } from "../environment";
 import { FireDatabaseService } from "./firedb.service";
 
@@ -30,6 +30,8 @@ export class YoutubeService {
           })
           .pipe(
                 map(data => {
+                    // data = data.filter(el => el.)
+                    // console.log(data)
                     let ids:string[] = [];
                     for(let video of data.items){
                         if(video.id.videoId)
@@ -137,7 +139,7 @@ export class YoutubeService {
             }
         })
         .pipe(
-            map(results => results.items)
+            map(results => results.items),
         )
     }
 
@@ -159,6 +161,7 @@ export class YoutubeService {
                 mergeData['channelDetails'] = appendedObject;
                 return mergeData;
             }),
+            // tap(data => console.log(data)),
             catchError((err)=> throwError(()=> new Error(err)))
         );
     }

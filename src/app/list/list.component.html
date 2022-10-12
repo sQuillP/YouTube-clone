@@ -10,7 +10,7 @@
             <div class="content-col">
                 <div class="content-row"> 
                     <!-- 70 characters -->
-                    <p class="title" [innerHTML]="video.snippet.channelTitle"></p>
+                    <p class="title" [innerHTML]="video.snippet.title"></p>
                 </div>
                 <div class="content-row">
                     <p class="small">{{video.statistics.viewCount | formatViews}} views - {{video.snippet.publishedAt | formatTime}}</p>
