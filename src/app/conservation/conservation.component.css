@@ -1,8 +1,17 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .content{
     width: 50px;
     background: gray;
     position: relative;
     border-radius: 20px;;
+    -webkit-transition: background 200ms linear;;
+    -o-transition: background 200ms linear;;
     transition: background 200ms linear;
 }
 
@@ -16,12 +25,19 @@
     width: 20px;
     border-radius: 50%;;
     background: white;
+    -webkit-transition: -webkit-transform 100ms linear;
+    transition: -webkit-transform 100ms linear;
+    -o-transition: transform 100ms linear;
     transition: transform 100ms linear;
-    transform: translateX(3px);
+    transition: transform 100ms linear, -webkit-transform 100ms linear;
+    -webkit-transform: translateX(3px);
+        -ms-transform: translateX(3px);
+            transform: translateX(3px);
     border: 1px solid #b9c0b9;
 }
 
 .on{
-    transform: translateX(27px);
+    -webkit-transform: translateX(27px);
+        -ms-transform: translateX(27px);
+            transform: translateX(27px);
 }
-

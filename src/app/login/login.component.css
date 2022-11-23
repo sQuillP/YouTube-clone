@@ -1,19 +1,37 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .main{
     width: 100%;
     height: 80vh;
+    display: -ms-grid;
     display: grid;
     place-items: center;
 }
 
 .login-form {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-radius: 10px;
     background: #f0f0f0;
     padding: 10px 50px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;}
+    -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;}
 
 .img-wrapper{
     width: 200px;
@@ -25,8 +43,13 @@
 }
 
 .form-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     margin-bottom: 20px;
     position: relative;
 
@@ -36,7 +59,8 @@
 .logo {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .btn {
@@ -44,6 +68,8 @@
     font-size: 1.2em;
     /* border-radius: 10px; */
     border: none;
+    -webkit-transition: background 100ms linear;
+    -o-transition: background 100ms linear;
     transition: background 100ms linear;
 }
 
@@ -69,7 +95,11 @@ label {
 
 .login-input {
     padding: 10px;
+    -webkit-transition: -webkit-box-shadow 100ms linear;
+    transition: -webkit-box-shadow 100ms linear;
+    -o-transition: box-shadow 100ms linear;
     transition: box-shadow 100ms linear;
+    transition: box-shadow 100ms linear, -webkit-box-shadow 100ms linear;
     outline: none;
     border: none;
     font-size: 1.1em;
@@ -78,10 +108,13 @@ label {
 }
 
 .login-input:focus {
-    box-shadow: 0 0 .1em 3px rgba(0, 162, 255, 0.5);
+    -webkit-box-shadow: 0 0 .1em 3px rgba(0, 162, 255, 0.5);
+            box-shadow: 0 0 .1em 3px rgba(0, 162, 255, 0.5);
 }
 
 .login-form{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     ;
 }
@@ -120,15 +153,26 @@ label {
 }
 
 .shake-form {
-    animation: horizontal-shake 500ms linear;
+    -webkit-animation: horizontal-shake 500ms linear;
+            animation: horizontal-shake 500ms linear;
+}
+
+
+@-webkit-keyframes horizontal-shake {
+    0%{-webkit-transform: translateX(0px);transform: translateX(0px);}
+    20%{-webkit-transform: translateX(10px);transform: translateX(10px);}
+    40%{-webkit-transform: translateX(-10px);transform: translateX(-10px);}
+    60%{-webkit-transform: translateX(10px);transform: translateX(10px);}
+    80%{-webkit-transform: translateX(-10px);transform: translateX(-10px);}
+    100%{-webkit-transform: translateX(0px);transform: translateX(0px);}
 }
 
 
 @keyframes horizontal-shake {
-    0%{transform: translateX(0px);}
-    20%{transform: translateX(10px);}
-    40%{transform: translateX(-10px);}
-    60%{transform: translateX(10px);}
-    80%{transform: translateX(-10px);}
-    100%{transform: translateX(0px);}
+    0%{-webkit-transform: translateX(0px);transform: translateX(0px);}
+    20%{-webkit-transform: translateX(10px);transform: translateX(10px);}
+    40%{-webkit-transform: translateX(-10px);transform: translateX(-10px);}
+    60%{-webkit-transform: translateX(10px);transform: translateX(10px);}
+    80%{-webkit-transform: translateX(-10px);transform: translateX(-10px);}
+    100%{-webkit-transform: translateX(0px);transform: translateX(0px);}
 }

@@ -1,33 +1,64 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 .main{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .videos-container{
     width: 90%;
+    display: -ms-grid;
     display: grid; 
     
     grid-template-columns: repeat(auto-fit, 380px);
     gap: 20px;
     margin-top: 60px;
-    box-sizing: border-box;
-    justify-content: center;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .video{
-    justify-self: center;
+    -ms-grid-column-align: center;
+        justify-self: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
+    -webkit-transition: -webkit-transform 100ms linear;
+    transition: -webkit-transform 100ms linear;
+    -o-transition: transform 100ms linear;
     transition: transform 100ms linear;
+    transition: transform 100ms linear, -webkit-transform 100ms linear;
     /* margin: 10px; */
 }
 
 
 .video:hover{
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
 }
 
 .thumbnail {
@@ -42,19 +73,26 @@
 .image{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .descriptor{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     justify-items: center;
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     width: 360px;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .info{
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     width: 100%;
 }
 
